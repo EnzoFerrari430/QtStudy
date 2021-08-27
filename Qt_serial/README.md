@@ -4,6 +4,9 @@
 
 ## 工程说明 ##
 1. Q1_QThreadTimer  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是最近遇到的一个问题，项目里要与服务器进行http通信定时上传数据，但是不能阻塞主界面操作。一开始使用QThread创建线程并启动QTimer定时器，以间隔相同的时间后发送数据。这里打算用创建一个QThread，并将QTimer moveToThread到这个线程中。然后启动定时器与线程。但是这里有坑，定时器的使用需要有事件循环，所以要把握好QThread的事件循环和定时器的启动的先后顺序。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是最近遇到的一个问题，项目里要与服务器进行http通信定时上传数据，但是不能阻塞主界面操作。一开始使用QThread创建线程并启动QTimer定时器，以间隔相同的时间后发送数据。这里打算用创建一个QThread，并将QTimer moveToThread到这个线程中。然后启动定时器与线程。但是这里有坑，定时器的使用需要有事件循环，所以要把握好QThread的事件循环和定时器的启动的先后顺序。  
+2. Q2_QThreadTimer  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个写法是上述遇到问题的另一种解法  
+这里继承自QThread，重写run()函数，在run函数里创建QTimer进行定时发送数据。代码会更加简洁
 
 
